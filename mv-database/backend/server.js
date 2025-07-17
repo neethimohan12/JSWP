@@ -23,7 +23,6 @@ db.connect(err => {
   console.log('MySQL Connected!');
 });
 
-// Routes
 
 // Get all movies
 app.get('/api/movies', (req, res) => {
@@ -42,16 +41,8 @@ app.post('/api/movies', (req, res) => {
   });
 });
 
-// // Search movie
-// app.get('/api/search', (req, res) => {
-//   const q = `%${req.query.q}%`;
-//   db.query('SELECT * FROM movies WHERE title LIKE ?', [q], (err, results) => {
-//     if (err) throw err;
-//     res.json(results);
-//   });
-// });
 
-// 🟢 Search movies
+// Search movies
 app.get('/api/movies/search', (req, res) => {
   const q = req.query.q || '';
   db.query('SELECT * FROM movies WHERE title LIKE ?', [`%${q}%`], (err, result) => {
@@ -60,7 +51,7 @@ app.get('/api/movies/search', (req, res) => {
   });
 });
 
-// 🟢 Delete a movie
+// Delete a movie
 app.delete('/api/movies/:id', (req, res) => {
   const { id } = req.params;
   db.query('DELETE FROM movies WHERE id = ?', [id], (err) => {
@@ -69,7 +60,7 @@ app.delete('/api/movies/:id', (req, res) => {
   });
 });
 
-// 🟢 Rate a movie
+// Rate a movie
 app.post('/api/movies/:id/rate', (req, res) => {
   const { id } = req.params;
   const { rating } = req.body;
