@@ -9,7 +9,7 @@ const port = 3000;
 app.use(cors());
 app.use(bodyParser.json());
 
-// MySQL connection
+
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -24,7 +24,6 @@ db.connect(err => {
 });
 
 
-// Get all movies
 app.get('/api/movies', (req, res) => {
   db.query('SELECT * FROM movies', (err, results) => {
     if (err) throw err;
@@ -32,17 +31,17 @@ app.get('/api/movies', (req, res) => {
   });
 });
 
-// Add movie
+
 app.post('/api/movies', (req, res) => {
-  const { title, rating } = req.body;
-  db.query('INSERT INTO movies (title, rating) VALUES (?, ?)', [title, rating], (err, result) => {
+  const { title, description } = req.body;
+  db.query('INSERT INTO movies (title, description) VALUES (?, ?)', [title, description], (err, result) => {
     if (err) throw err;
-    res.json({ id: result.insertId, title, rating });
+    res.json({ id: result.insertId, title, description });
   });
 });
 
 
-// Search movies
+
 app.get('/api/movies/search', (req, res) => {
   const q = req.query.q || '';
   db.query('SELECT * FROM movies WHERE title LIKE ?', [`%${q}%`], (err, result) => {
@@ -51,7 +50,7 @@ app.get('/api/movies/search', (req, res) => {
   });
 });
 
-// Delete a movie
+
 app.delete('/api/movies/:id', (req, res) => {
   const { id } = req.params;
   db.query('DELETE FROM movies WHERE id = ?', [id], (err) => {
@@ -60,7 +59,7 @@ app.delete('/api/movies/:id', (req, res) => {
   });
 });
 
-// Rate a movie
+
 app.post('/api/movies/:id/rate', (req, res) => {
   const { id } = req.params;
   const { rating } = req.body;
