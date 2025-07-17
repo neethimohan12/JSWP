@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<div id="modalBackground" class="modal-bg">
+<div id="modalContent" class="modal">
+<h2>Are you sure?</h2>
+<button id="confirmBtn">Yes</button>
+<button id="cancelBtn">No</button>
+</div>
+</div>
+
+<script>
+    const modalBg = document.getElementById('modalBackground');
+const modalContent = document.getElementById('modalContent');
+// Clicking background closes modal
+modalBg.addEventListener('click', function() {
+this.style.display = 'none';
+console.log('Modal closed!');
+});
+// But clicking the modal content shouldn't close it!
+modalContent.addEventListener('click', function(e) {
+e.stopPropagation(); // Stop the bubble!
+console.log('Clicked inside modal - staying open');
+});
+</script>
+</html>

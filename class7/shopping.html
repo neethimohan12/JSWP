@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>My Shopping List</title>
+</head>
+<body>
+ <h1>My Shopping List</h1>
+
+ <input type="text" id="itemInput">
+ <button onclick="addItem()">Add</button>
+
+ <ul id="shoppingList"></ul>
+
+ <script>
+ function addItem() {
+ let input = document.getElementById("itemInput");
+ //let list = document.getElementById("shoppinglist"); // Bug: wrong ID
+  let list = document.getElementById("shoppingList");
+
+ let item = document.createElement("li");
+ item.textContent = input.value;
+
+ list.appendChild(item);
+ input.value = "";
+ }
+ </script>
+</body>

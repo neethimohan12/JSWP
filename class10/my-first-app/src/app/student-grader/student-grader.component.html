@@ -1,0 +1,27 @@
+<div class="grade-tracker">
+ <h1>Student Grade Tracker</h1>
+
+ <div class="add-student">
+ <input [(ngModel)]="newName" placeholder="Student name">
+ <input [(ngModel)]="newGrade" type="number" placeholder="Grade (0-100)">
+ <button (click)="addStudent()">Add Student</button>
+ </div>
+
+ <table>
+ <tr>
+ <th>Name</th>
+ <th>Grade</th>
+ <th>Letter</th>
+ </tr>
+ <tr *ngFor="let student of students">
+ <td>{{ student.name }}</td>
+ <td>{{ student.grade }}%</td>
+ <td>{{ getGradeLetter(student.grade) }}</td>
+ </tr>
+ </table>
+
+ <div class="stats">
+ <p>Class Average: {{ getClassAverage() | number:'1.1-1' }}%</p>
+ <p>Total Students: {{ students.length }}</p>
+ </div>
+</div>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Shopping Calculator</title>
+</head>
+<body>
+ <h1>Shopping Calculator</h1>
+ <button onclick="calculateTotal()">Calculate</button>
+
+ <script>
+ function calculateTotal() {
+ let items = [
+ { name: "Shirt", price: 20 },
+ { name: "Pants", price: 30 },
+ { name: "Hat", price: 10 }
+ ];
+
+ let total = 0; // Set breakpoint here
+
+ for (let i = 0; i < items.length; i++) {
+ total += items[i].price;
+ }
+
+ alert("Total: $" + total);
+ }
+ </script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+/* Simple CSS */
+.todo-item {
+ display: flex;
+ align-items: center;
+ padding: 10px;
+ border-bottom: 1px solid #eee;
+}
+.done {
+ text-decoration: line-through;
+ opacity: 0.6;
+}

@@ -1,0 +1,43 @@
+<div id="shop">
+<h2>T-Shirt Shop</h2>
+<div class="product" data-name="Red Shirt" data-price="20">
+<p>Red T-Shirt - $20</p>
+<button class="add-to-cart">Add to Cart</button>
+</div>
+<div class="product" data-name="Blue Shirt" data-price="25">
+<p>Blue T-Shirt - $25</p>
+<button class="add-to-cart">Add to Cart</button>
+</div>
+</div>
+<div id="cart">
+<h3>Shopping Cart</h3>
+<ul id="cartItems"></ul>
+<p>Total: $<span id="total">0</span></p>
+</div>
+
+<script>
+    const shop = document.getElementById('shop');
+const cartItems = document.getElementById('cartItems');
+const totalDisplay = document.getElementById('total');
+let total = 0;
+// Use event delegation for all products
+shop.addEventListener('click', (e) => {
+if (e.target.classList.contains('add-to-cart')) {
+const product = e.target.parentElement;
+const name = product.dataset.name;
+const price = parseInt(product.dataset.price);
+// Add to cart
+const li = document.createElement('li');
+li.textContent = `${name} - $${price}`;
+cartItems.appendChild(li);
+// Update total
+total += price;
+totalDisplay.textContent = total;
+// Visual feedback
+e.target.textContent = 'Added!';
+setTimeout(() => {
+e.target.textContent = 'Add to Cart';
+}, 1000);
+}
+});
+</script>

@@ -1,0 +1,13 @@
+let numbers =[1, 2, 3, 4, 5];
+
+let doubled = numbers.map((num) => num + 2);
+
+console.log(doubled);
+
+let stringed = doubled.map((num)) => `${num}`);
+console.log(typeof stringed[0]);
+
+let ages =[12, 18, 25, 16, 30, 22, 14];
+
+let adults = ages.filter((age) => age >= 18);
+

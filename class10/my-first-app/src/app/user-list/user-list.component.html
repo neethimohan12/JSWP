@@ -1,0 +1,34 @@
+<div class="user-list">
+ <h2>User Management</h2>
+
+ <div class="add-user">
+ <input [(ngModel)]="newUserName" placeholder="Name">
+ <input [(ngModel)]="newUserEmail" placeholder="Email">
+ <button (click)="addUser()">Add User</button>
+ </div>
+
+ <div *ngIf="loading">Loading users...</div>
+
+ <table *ngIf="!loading && users.length > 0">
+ <thead>
+ <tr>
+ <th>ID</th>
+ <th>Name</th>
+ <th>Email</th>
+ <th>Actions</th>
+ </tr>
+ </thead>
+ <tbody>
+ <tr *ngFor="let user of users">
+ <td>{{ user.id }}</td>
+ <td>{{ user.name }}</td>
+ <td>{{ user.email }}</td>
+ <td>
+ <button (click)="deleteUser(user.id)">Delete</button>
+ </td>
+ </tr>
+ </tbody>
+ </table>
+
+ <p *ngIf="!loading && users.length === 0">No users found.</p>
+</div>

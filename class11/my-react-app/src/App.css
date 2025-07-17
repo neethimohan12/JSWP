@@ -1,0 +1,36 @@
+/* App.css */
+.pizza-app {
+ max-width: 600px;
+ margin: 0 auto;
+ padding: 20px;
+ font-family: Arial, sans-serif;
+}
+.pizza-card {
+ border: 2px solid #ddd;
+ border-radius: 8px;
+ padding: 15px;
+ margin: 10px;
+ text-align: center;
+ transition: transform 0.2s;
+}
+.pizza-card:hover {
+ transform: scale(1.05);
+ border-color: #ff6b6b;
+}
+.selected {
+ background-color: #ff6b6b;
+ color: white;
+}
+
+button {
+ padding: 10px 20px;
+ margin: 5px;
+ border: none;
+ border-radius: 5px;
+ cursor: pointer;
+ background-color: #4ecdc4;
+ color: white;
+}
+button:hover {
+ background-color: #45b7b8;
+}

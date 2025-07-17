@@ -1,0 +1,26 @@
+<h1>🎬 Movie Database</h1>
+
+<!-- Add Movie Form -->
+<div>
+  <input [(ngModel)]="newMovie.title" placeholder="Movie Title" />
+  <input [(ngModel)]="newMovie.description" placeholder="Description" />
+  <button (click)="addMovie()">Add Movie</button>
+</div>
+
+<!-- Search -->
+<div style="margin-top: 10px;">
+  <input [(ngModel)]="searchTerm" placeholder="Search Movies" />
+  <button (click)="searchMovies()">Search</button>
+</div>
+
+<!-- Movie List -->
+<ul style="margin-top: 20px;">
+  <li *ngFor="let movie of movies">
+    <strong>{{ movie.title }}</strong> - {{ movie.description }}<br />
+    ⭐ Rating: {{ movie.rating || 'N/A' }}<br />
+    Rate:
+    <span *ngFor="let star of [1,2,3,4,5]">
+      <button (click)="rateMovie(movie.id, star)">⭐{{ star }}</button>
+    </span>
+  </li>
+</ul>

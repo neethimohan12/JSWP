@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html >
+<head>
+  <title>Canvas Drawing App</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial;
+    }
+    #canvas {
+      border: 2px solid #333;
+      cursor: crosshair;
+    }
+    .controls {
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Canvas Drawing App</h2>
+
+  <div class="controls">
+    <label>Color: <input type="color" id="colorPicker" value="#000000"></label>
+    <label>Brush Size: <input type="range" id="brushSize" min="1" max="20" value="3"></label>
+    <button id="clearCanvas">Clear</button>
+    <button id="saveCanvas">Save</button>
+  </div>
+
+  <canvas id="canvas" width="600" height="400"></canvas>
+
+  <script>
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    const colorPicker = document.getElementById("colorPicker");
+    const brushSize = document.getElementById("brushSize");
+    const clearBtn = document.getElementById("clearCanvas");
+    const saveBtn = document.getElementById("saveCanvas");
+
+    let isDrawing = false;
+
+    canvas.addEventListener("mousedown", (e) => {
+      isDrawing = true;
+      ctx.beginPath();
+      ctx.moveTo(e.offsetX, e.offsetY);
+    });
+
+    canvas.addEventListener("mousemove", (e) => {
+      if (isDrawing) {
+        ctx.strokeStyle = colorPicker.value;
+        ctx.lineWidth = brushSize.value;
+        ctx.lineCap = "round";
+        ctx.lineTo(e.offsetX, e.offsetY);
+        ctx.stroke();
+      }
+    });
+
+    canvas.addEventListener("mouseup", () => {
+      isDrawing = false;
+      ctx.closePath();
+    });
+
+    canvas.addEventListener("mouseleave", () => {
+      isDrawing = false;
+    });
+
+    clearBtn.addEventListener("click", () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });
+
+    saveBtn.addEventListener("click", () => {
+      const imageURL = canvas.toDataURL("image/png");
+      const link = document.createElement("a");
+      link.href = imageURL;
+      link.download = "my_drawing.png";
+      link.click();
+    });
+  </script>
+
+</body>
+</html>

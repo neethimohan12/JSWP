@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Breakpoint Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+      }
+      button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 10px;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+      #result {
+        margin-top: 20px;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        border: 1px solid #dee2e6;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>JavaScript Breakpoint Testing</h1>
+
+    ```
+    <p>
+      Click the buttons below and use your browser's developer tools to test
+      breakpoints:
+    </p>
+
+    <button onclick="calculateSum()">Calculate Sum</button>
+    <button onclick="processArray()">Process Array</button>
+    <button onclick="fetchUserData()">Fetch User Data</button>
+
+    <div id="result"></div>
+
+    <div
+      style="
+        margin-top: 30px;
+        padding: 15px;
+        background-color: #e9ecef;
+        border-radius: 5px;
+      "
+    >
+      <h3>How to test breakpoints:</h3>
+      <ol>
+        <li>Open Developer Tools (F12 or right-click → Inspect)</li>
+        <li>Go to the "Sources" tab</li>
+        <li>Find this HTML file in the file tree</li>
+        <li>Click on line numbers to set breakpoints (red dots will appear)</li>
+        <li>Click the buttons above to trigger the functions</li>
+        <li>Execution will pause at your breakpoints</li>
+      </ol>
+    </div>
+
+    <script>
+
+      function calculatePrice(quantity, price) {
+      let subtotal = quantity * price; // Click line 2 to set breakpoint
+      let tax = subtotal * 0.08;
+      let total = subtotal + tax;
+      return total;
+          }
+      calculatePrice(5, 10);
+console.log(`The total is ${total}`);
+      function calculateSum() {
+        console.log("Starting sum calculation...");
+
+        let a = 10;
+        let b = 25;
+
+        // Set a breakpoint on the next line to inspect variables
+        let sum = a + b;
+
+        let message = `The sum of ${a} and ${b} is ${sum}`;
+
+        // Another good place for a breakpoint
+        document.getElementById("result").innerHTML = message;
+
+        console.log("Sum calculation completed:", sum);
+        return sum;
+      }
+
+      function processArray() {
+        console.log("Processing array...");
+
+        let numbers = [1, 2, 3, 4, 5];
+        let results = [];
+
+        // Set a breakpoint here to watch the loop
+        for (let i = 0; i < numbers.length; i++) {
+          let squared = numbers[i] * numbers[i];
+          results.push(squared);
+
+          // Breakpoint here to inspect each iteration
+          console.log(`${numbers[i]} squared = ${squared}`);
+        }
+
+        let output = `Original: [${numbers.join(
+          ", "
+        )}]<br>Squared: [${results.join(", ")}]`;
+        document.getElementById("result").innerHTML = output;
+
+        return results;
+      }
+
+      function fetchUserData() {
+        console.log("Fetching user data...");
+
+        // Simulated user data
+        let userData = {
+          name: "John Doe",
+          age: 30,
+          email: "john@example.com",
+        };
+
+        // Set a breakpoint here to inspect the object
+        let isValid = validateUser(userData);
+
+        if (isValid) {
+          displayUserInfo(userData);
+        } else {
+          document.getElementById("result").innerHTML = "Invalid user data";
+        }
+      }
+
+      function validateUser(user) {
+        console.log("Validating user:", user);
+
+        // Breakpoint here to check validation logic
+        if (!user.name || user.name.length < 2) {
+          return false;
+        }
+
+        if (!user.age || user.age < 18) {
+          return false;
+        }
+
+        if (!user.email || !user.email.includes("@")) {
+          return false;
+        }
+
+        return true;
+      }
+
+      function displayUserInfo(user) {
+        // Breakpoint here to see the final display
+        let userInfo = `
+            <strong>User Information:</strong><br>
+            Name: ${user.name}<br>
+            Age: ${user.age}<br>
+            Email: ${user.email}
+        `;
+
+        document.getElementById("result").innerHTML = userInfo;
+      }
+
+      // Add some global variables for testing
+      window.debugData = {
+        version: "1.0",
+        testMode: true,
+        lastAction: null,
+      };
+    </script>
+    ```
+  <!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
+</html>

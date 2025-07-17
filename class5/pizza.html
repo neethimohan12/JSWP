@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<div id="shoppingCart" style="border: 2px solid blue; padding: 20px;">
+Shopping Cart
+<div id="item" style="border: 2px solid green; padding: 10px;">
+Item: Pizza
+<button id="deleteBtn">Delete</button>
+</div>
+</div>
+
+<script>
+    // All three elements can "hear" the click!
+const cart = document.getElementById('shoppingCart');
+const item = document.getElementById('item');
+const deleteBtn = document.getElementById('deleteBtn');
+cart.addEventListener('click', () => {
+console.log('Cart clicked!');
+});
+item.addEventListener('click', () => {
+console.log('Item clicked!');
+});
+deleteBtn.addEventListener('click', () => {
+console.log('Delete clicked!');
+});
+</script>
+</html>
